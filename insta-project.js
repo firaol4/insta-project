@@ -38,9 +38,9 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
   }
   async connectedCallback() {
     super.connectedCallback();
-    await this.loadAllPhotos();
+    await this.loadAllPhotos();   // Load all artworks 
     if (this.photos.length > 0) {
-      this.loadPhoto();
+      this.loadPhoto(); // Display the first artwork 
     } else {
       console.error("No artworks found in data.json");
     }
@@ -57,14 +57,14 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
     }
   }
 
-  loadPhoto() {
+  loadPhoto() { // Display the current artwork based on currentIndex
     if (!this.photos || this.photos.length === 0) return;
 
-    const idx = this.currentIndex - 1;
+    const idx = this.currentIndex - 1;  // Convert 1-based index to 0-based array index
     const art = this.photos[idx];
     if (!art) return;
 
-    this.photo = {
+    this.photo = { // Set current photo data
       image: art.image,
       title: art.title,
       artist: art.artist,
@@ -98,7 +98,7 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
 
   dislikePhoto(photo) {
     const reactions = JSON.parse(localStorage.getItem("reactions") || "{}");
-    const currentReaction = reactions[photo.image];
+    const currentReaction = reactions[photo.image]; // Get reaction from browser storage
 
     if (currentReaction === "dislike") {
       // If already disliked, unpress 
@@ -110,30 +110,30 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
 
     
     localStorage.setItem("reactions", JSON.stringify(reactions));
-    this.requestUpdate();
+    this.requestUpdate(); // Save updated reactions and refresh display
   }
   
-  getUserReaction(image) {
+  getUserReaction(image) { // Check if user liked or disliked this image
     const reactions = JSON.parse(localStorage.getItem("reactions") || "{}");
-    return reactions[image] || null;
-  }
+    return reactions[image] || null; // Returns "like", "dislike", or nothing
+  } 
 
 
   sharePhoto(photo) {
-    navigator.clipboard.writeText(photo.image);
+    navigator.clipboard.writeText(photo.image); // Copy image URL to clipboard
    
   }
 
   nextArtwork() {
     if (this.currentIndex < this.totalPhotos) {
-      this.currentIndex++;
+      this.currentIndex++; // Go to next artwork only if not at max
       this.loadPhoto();
     }
   }
 
   prevArtwork() {
     if (this.currentIndex > 1) {
-      this.currentIndex--;
+      this.currentIndex--; // Go to prev artwork only if not first artwork
       this.loadPhoto();
     }
   }
