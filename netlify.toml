@@ -1,6 +1,7 @@
 [build]
   publish = "public"
   command = "npm run build"
+  functions = "netlify/functions"
 
 [[headers]]
   for = "/*"
@@ -19,3 +20,8 @@
   for = "/*.html"
   [headers.values]
     Cache-Control = "no-cache"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
