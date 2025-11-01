@@ -1,29 +1,27 @@
-import fs from "fs";
 import path from "path";
+import { promises as fs } from "fs";
 
-export const handler = async (event, context) => {
+export default async function handler(req, res) {
   try {
-    const filePath = path.resolve("./data.json");
-    const jsonData = fs.readFileSync(filePath, "utf8");
-    const data = JSON.parse(jsonData);
+    // Load local JSON file
+    const filePath = path.join(process.cwd(), "data", "basquiat.json");
+    const jsonData = await fs.readFile(filePath, "utf-8");
+    const artworks = JSON.parse(jsonData);
 
-    return {
-      statusCode: 200,
-      headers: {
-        "Cache-Control": "max-age=0, s-maxage=1800",
-        "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
-        "Access-Control-Allow-Headers":
-          "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
-      },
-      body: JSON.stringify(data),
-    };
+    // Enable CORS
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+    // Handle OPTIONS request for CORS preflight
+    if (req.method === "OPTIONS") {
+      res.status(200).end();
+      return;
+    }
+
+    res.status(200).json(artworks);
   } catch (error) {
-    console.error("Error reading data:", error);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: "Failed to read basquiat.json" }),
-    };
+    console.error(error);
+    res.status(500).json({ error: "Failed to load data" });
   }
-};
+}

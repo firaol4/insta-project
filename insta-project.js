@@ -184,7 +184,7 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         align-items: center;
         padding: 8px 12px;
         width: 100%;
-        border-top: var(-ddd-border-xs);
+        border-top: var(--ddd-border-xs);
         
       }
   
@@ -240,8 +240,8 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
     return html`
       <div class="photo-card">
         <h3>${this.photo.title} (${this.photo.year})</h3>
-        <p><strong>${this.photo.artist}</strong></\p>
-  
+        <p><strong>${this.photo.artist}</strong></p>
+
         <img src="${this.photo.image}" alt="${this.photo.title}" />
   
         <div class="actions">
