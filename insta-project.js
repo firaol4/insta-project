@@ -38,12 +38,21 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
   }
   async connectedCallback() {
     super.connectedCallback();
-    await this.loadAllPhotos();   // Load all artworks 
-    if (this.photos.length > 0) {
-      this.loadPhoto(); // Display the first artwork 
-    } else {
-      console.error("No artworks found in data.json");
+    await this.loadAllPhotos();
+  
+    const urlParams = new URLSearchParams(window.location.search);
+    const photoParam = urlParams.get("photo");
+  
+    if (photoParam) {
+      const found = this.photos.find(p => p.id == photoParam);
+      if (found) {
+        this.currentIndex = this.photos.indexOf(found) + 1;
+      } else {
+        this.currentIndex = Number(photoParam) || 1;
+      }
     }
+  
+    this.loadPhoto();
   }
 
   async loadAllPhotos() {
@@ -75,6 +84,8 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
       dislikes: 0,
     };
     this.requestUpdate();
+    this.changeSettings("photo", this.photo.id || this.currentIndex);
+
   }
  
   
@@ -120,8 +131,13 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
 
 
   sharePhoto(photo) {
-    navigator.clipboard.writeText(photo.image); // Copy image URL to clipboard
-   
+    const currentPhotoId = photo.id || this.currentIndex;
+    this.changeSettings("photo", currentPhotoId);
+  
+    const url = new URL(window.location.href);
+    navigator.clipboard.writeText(url.href);
+  
+    alert("Link copied to clipboard!");
   }
 
   nextArtwork() {
@@ -136,6 +152,15 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
       this.currentIndex--; // Go to prev artwork only if not first artwork
       this.loadPhoto();
     }
+  }
+  changeSettings(key, value) {
+    const url = new URL(window.location);
+    if (value !== null && value !== undefined) {
+      url.searchParams.set(key, value);
+    } else {
+      url.searchParams.delete(key);
+    }
+    window.history.replaceState({}, "", url);
   }
 
   // Lit reactive properties
@@ -174,7 +199,6 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         width: 100%;
         height: 300px;
         object-fit: contain;
-        
         flex-shrink: 0;
       }
   
