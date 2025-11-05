@@ -213,7 +213,7 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         width: 80%;
         height: 400px;
         aspect-ratio: 1 / 1;
-        object-fit: cover;
+        object-fit: contain;
         border-bottom: 1px solid var(--ddd-theme-default-pebble);
         transition: transform 0.3s ease, filter 0.3s ease;
       }
@@ -250,12 +250,12 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
   
       .actions button.liked {
         color: var(--ddd-theme-default-forestGreen);
-        text-shadow: 0 0 6px var(--ddd-theme-default-creekTeal);
+        text-shadow: 0 0 20px var(--ddd-theme-default-creekTeal);
       }
   
       .actions button.disliked {
         color: var(--ddd-theme-default-original87Pink);
-        text-shadow: 0 0 6px var(--ddd-theme-default-discoveryCoral);
+        text-shadow: 0 0 20px var(--ddd-theme-default-discoveryCoral);
       }
   
       .actions button:disabled {
