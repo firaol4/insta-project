@@ -171,88 +171,162 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-        background-color: light-dark(var(--ddd-theme-default-slateLight), var(--ddd-theme-default-charcoal));
-        color: light-dark(var(--ddd-theme-default-creekTeal), var(--ddd-theme-default-keystoneYellow));
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(
+          135deg,
+          var(--ddd-theme-default-creekTeal),
+          var(--ddd-theme-default-slateLight)
+        );
+        color: var(--ddd-theme-default-charcoal);
         font-family: var(--ddd-font-navigation);
+        overflow: hidden;
+        box-sizing: border-box;
+        transition: background 0.5s ease;
       }
   
       .photo-card {
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         align-items: center;
-       
+        width: 90%;
+        max-width: 800px;
+        height: 90vh;
         background-color: var(--ddd-theme-default-white);
-        border: var(--ddd-border-xs);
-        border-radius: var(--ddd-radius-sm);
-        box-shadow: var(--ddd-boxShadow-sm);
+        border-radius: var(--ddd-radius-lg);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
         overflow: hidden;
+        animation: fadeIn 0.8s ease;
+        backdrop-filter: blur(8px);
+      }
+  
+      h3 {
+        margin: 16px 0 8px;
+        font-size: 1.8rem;
+        color: var(--ddd-theme-default-potentialMidnight);
         text-align: center;
       }
   
-      h3, p {
+      p {
         margin: 4px 0;
-        color: inherit;
+        font-size: 1rem;
+        color: var(--ddd-theme-default-charcoal);
+        text-align: center;
       }
   
       img {
         width: 100%;
-        height: 300px;
-        object-fit: contain;
-        flex-shrink: 0;
-        border: var(--ddd-border-xs);
-        border-radius: var(--ddd-radius-sm);
-        box-shadow: var(--ddd-boxShadow-sm);
+        height: 60%;
+        object-fit: cover;
+        border-radius: var(--ddd-radius-md);
+        box-shadow: var(--ddd-boxShadow-md);
+        transition: transform 0.4s ease;
+      }
+  
+      img:hover {
+        transform: scale(1.03);
       }
   
       .actions {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        gap: 1.2rem;
         align-items: center;
-        padding: 8px 12px;
+        padding: 12px 0;
         width: 100%;
+        background: light-dark(
+          var(--ddd-theme-default-creekTeal),
+          var(--ddd-theme-default-charcoal)
+        );
+        color: var(--ddd-theme-default-white);
         border-top: var(--ddd-border-xs);
-        
+        transition: all 0.3s ease;
       }
   
       .actions button {
         background: none;
         border: none;
-        font-size: 1.5em;
+        font-size: 1.8em;
         cursor: pointer;
-        transition: transform 0.2s ease;
+        transition: transform 0.2s ease, color 0.3s ease;
+        color: var(--ddd-theme-default-white);
       }
   
       .actions button:hover {
-        transform: scale(1.1);
+        transform: scale(1.2);
+        color: var(--ddd-theme-default-keystoneYellow);
       }
   
       .actions button.liked {
-        color:var(--ddd-theme-default-creekTeal);
-        text-shadow: 0 0 8px var(--ddd-theme-default-forestGreen);
+        color: var(--ddd-theme-default-forestGreen);
+        text-shadow: 0 0 8px var(--ddd-theme-default-creekTeal);
+        transform: scale(1.3);
       }
   
       .actions button.disliked {
         color: var(--ddd-theme-default-discoveryCoral);
         text-shadow: 0 0 8px var(--ddd-theme-default-original87Pink);
-      }
-  
-      .actions button:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
+        transform: scale(1.3);
       }
   
       .details {
         flex-grow: 1;
         overflow-y: auto;
-        padding: 10px 15px;
+        padding: 16px 24px;
         width: 100%;
         box-sizing: border-box;
         color: var(--ddd-theme-default-potentialMidnight);
+        line-height: 1.6;
+        font-size: 1rem;
         text-align: left;
-        line-height: 1.4;
+        background: rgba(255, 255, 255, 0.75);
+      }
+  
+      /* Scrollbar styling for aesthetics */
+      .details::-webkit-scrollbar {
+        width: 8px;
+      }
+      .details::-webkit-scrollbar-thumb {
+        background-color: var(--ddd-theme-default-creekTeal);
+        border-radius: var(--ddd-radius-sm);
+      }
+  
+      /* Smooth entry animation */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+  
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .photo-card {
+          width: 95%;
+          height: 85vh;
+        }
+  
+        img {
+          height: 55%;
+        }
+  
+        h3 {
+          font-size: 1.4rem;
+        }
+  
+        .actions button {
+          font-size: 1.4em;
+        }
       }
     `];
   }
+  
   
   
 
