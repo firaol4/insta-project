@@ -172,82 +172,120 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         align-items: center;
         min-height: 100vh;
         background-color: light-dark(var(--ddd-theme-default-slateLight), var(--ddd-theme-default-charcoal));
-        color: light-dark(var(--ddd-theme-default-creekTeal), var(--ddd-theme-default-keystoneYellow));
+        color: light-dark(var(--ddd-theme-default-charcoal), var(--ddd-theme-default-white));
         font-family: var(--ddd-font-navigation);
+        padding: var(--ddd-spacing-4);
       }
   
       .photo-card {
         display: flex;
         flex-direction: column;
         align-items: center;
-       
-        background-color: var(--ddd-theme-default-white);
-        border: var(--ddd-border-xs);
-        border-radius: var(--ddd-radius-sm);
-        box-shadow: var(--ddd-boxShadow-sm);
+        width: min(90vw, 600px);
+        background-color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-midnight));
+        border-radius: var(--ddd-radius-md);
+        box-shadow: var(--ddd-boxShadow-md);
         overflow: hidden;
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+      }
+  
+      .photo-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--ddd-boxShadow-lg);
+      }
+  
+      h3 {
+        margin: var(--ddd-spacing-2) 0 0 0;
+        font-size: var(--ddd-font-size-l);
+        color: var(--ddd-theme-default-ink);
         text-align: center;
       }
   
-      h3, p {
-        margin: 4px 0;
-        color: inherit;
+      p {
+        margin: var(--ddd-spacing-1) 0;
+        color: var(--ddd-theme-default-carbon);
+        text-align: center;
+        font-size: var(--ddd-font-size-s);
       }
   
       img {
         width: 100%;
-        height: 300px;
-        object-fit: contain;
-        flex-shrink: 0;
-        
+        height: auto;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-bottom: 1px solid var(--ddd-theme-default-pebble);
+        transition: transform 0.3s ease, filter 0.3s ease;
+      }
+  
+      img:hover {
+        transform: scale(1.02);
+        filter: brightness(1.05);
       }
   
       .actions {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
-        padding: 8px 12px;
+        padding: var(--ddd-spacing-2);
         width: 100%;
-        border-top: var(--ddd-border-xs);
-        
+        border-top: 1px solid var(--ddd-theme-default-pebble);
+        background-color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-graphite));
       }
   
       .actions button {
         background: none;
         border: none;
-        font-size: 1.5em;
+        font-size: var(--ddd-font-size-xl);
         cursor: pointer;
-        transition: transform 0.2s ease;
+        padding: var(--ddd-spacing-1);
+        color: var(--ddd-theme-default-carbon);
+        transition: transform 0.2s ease, color 0.3s ease;
       }
   
       .actions button:hover {
-        transform: scale(1.1);
+        transform: scale(1.15);
+        color: var(--ddd-theme-default-keystoneYellow);
       }
   
       .actions button.liked {
-        color:var(--ddd-theme-default-creekTeal);
-        text-shadow: 0 0 8px var(--ddd-theme-default-forestGreen);
+        color: var(--ddd-theme-default-forestGreen);
+        text-shadow: 0 0 6px var(--ddd-theme-default-creekTeal);
       }
   
       .actions button.disliked {
-        color: var(--ddd-theme-default-discoveryCoral);
-        text-shadow: 0 0 8px var(--ddd-theme-default-original87Pink);
+        color: var(--ddd-theme-default-original87Pink);
+        text-shadow: 0 0 6px var(--ddd-theme-default-discoveryCoral);
       }
   
       .actions button:disabled {
-        opacity: 0.5;
+        opacity: 0.4;
         cursor: not-allowed;
       }
   
       .details {
-        flex-grow: 1;
-        overflow-y: auto;
-        padding: 10px 15px;
+        padding: var(--ddd-spacing-3);
+        font-size: var(--ddd-font-size-s);
+        line-height: 1.6;
+        color: light-dark(var(--ddd-theme-default-carbon), var(--ddd-theme-default-white));
+        background-color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-graphite));
         width: 100%;
         box-sizing: border-box;
-        color: var(--ddd-theme-default-potentialMidnight);
         text-align: left;
-        line-height: 1.4;
+      }
+  
+      @media (max-width: 600px) {
+        .photo-card {
+          width: 95vw;
+          border-radius: var(--ddd-radius-sm);
+        }
+  
+        h3 {
+          font-size: var(--ddd-font-size-m);
+        }
+  
+        .actions button {
+          font-size: var(--ddd-font-size-l);
+        }
       }
     `];
   }
@@ -263,7 +301,9 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
 
     return html`
       <div class="photo-card">
+        <div class="title">
         <h3>${this.photo.title} (${this.photo.year})</h3>
+        </div>
         <p><strong>${this.photo.artist}</strong></p>
 
         <img src="${this.photo.image}" alt="${this.photo.title}" />
