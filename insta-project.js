@@ -180,8 +180,7 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 400px;
-        height: 600px;
+       
         background-color: var(--ddd-theme-default-white);
         border: var(--ddd-border-xs);
         border-radius: var(--ddd-radius-sm);
