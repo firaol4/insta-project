@@ -271,6 +271,8 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         width: 100%;
         box-sizing: border-box;
         text-align: left;
+        height: 300px;
+        overflow: scroll;
       }
   
       @media (max-width: 600px) {
