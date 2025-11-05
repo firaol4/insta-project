@@ -199,6 +199,9 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         height: 300px;
         object-fit: contain;
         flex-shrink: 0;
+        border: var(--ddd-border-xs);
+        border-radius: var(--ddd-radius-sm);
+        box-shadow: var(--ddd-boxShadow-sm);
       }
   
       .actions {
