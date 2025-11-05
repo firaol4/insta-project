@@ -261,6 +261,9 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         opacity: 0.4;
         cursor: not-allowed;
       }
+      title {
+
+      }
   
       .details {
         padding: var(--ddd-spacing-3);
@@ -302,10 +305,11 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
     const reaction = this.getUserReaction(this.photo.image);
 
     return html`
-      <div class="photo-card">
-        <div class="title">
+    <div class="title">
         <h3>${this.photo.title} (${this.photo.year})</h3>
         </div>
+      <div class="photo-card">
+        
         <p><strong>${this.photo.artist}</strong></p>
 
         <img src="${this.photo.image}" alt="${this.photo.title}" />
