@@ -170,9 +170,10 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         display: flex;
         justify-content: center;
         align-items: center;
+        min-height: 100vh;
         width: 100vw;
-        height: 100vh;
         margin: 0;
+        padding: 0;
         background: linear-gradient(
           135deg,
           var(--ddd-theme-default-creekTeal),
@@ -181,6 +182,7 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         color: var(--ddd-theme-default-charcoal);
         font-family: var(--ddd-font-navigation);
         overflow: hidden;
+        box-sizing: border-box;
         transition: background 0.5s ease;
       }
   
@@ -196,9 +198,8 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         border-radius: var(--ddd-radius-lg);
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
         overflow: hidden;
-        backdrop-filter: blur(10px);
-        position: relative;
-        transition: all 0.3s ease;
+        animation: fadeIn 0.8s ease;
+        backdrop-filter: blur(8px);
       }
   
       h3 {
@@ -215,28 +216,17 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         text-align: center;
       }
   
-      .photo-wrapper {
-        position: relative;
-        width: 100%;
-        flex-grow: 1;
-        background: var(--ddd-theme-default-slateLight);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-      }
-  
-      .photo-wrapper img {
+      img {
         width: 100%;
         height: 100%;
-        object-fit: contain; /* Keeps full image visible and crisp */
-        transition: opacity 0.6s ease;
+        object-fit: cover;
         border-radius: var(--ddd-radius-md);
-        user-select: none;
+        box-shadow: var(--ddd-boxShadow-md);
+        transition: transform 0.4s ease;
       }
   
-      .photo-wrapper img.fade-out {
-        opacity: 0;
+      img:hover {
+        transform: scale(1.03);
       }
   
       .actions {
@@ -246,9 +236,13 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         align-items: center;
         padding: 12px 0;
         width: 100%;
-        background: var(--ddd-theme-default-creekTeal);
+        background: light-dark(
+          var(--ddd-theme-default-creekTeal),
+          var(--ddd-theme-default-charcoal)
+        );
         color: var(--ddd-theme-default-white);
         border-top: var(--ddd-border-xs);
+        transition: all 0.3s ease;
       }
   
       .actions button {
@@ -278,18 +272,19 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
       }
   
       .details {
-        padding: 12px 24px;
+        flex-grow: 1;
+        overflow-y: auto;
+        padding: 16px 24px;
         width: 100%;
         box-sizing: border-box;
         color: var(--ddd-theme-default-potentialMidnight);
-        line-height: 1.5;
+        line-height: 1.6;
         font-size: 1rem;
         text-align: left;
-        background: rgba(255, 255, 255, 0.8);
-        border-top: var(--ddd-border-xs);
-        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.75);
       }
   
+      /* Scrollbar styling for aesthetics */
       .details::-webkit-scrollbar {
         width: 8px;
       }
@@ -298,10 +293,27 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         border-radius: var(--ddd-radius-sm);
       }
   
+      /* Smooth entry animation */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+  
+      /* Responsive adjustments */
       @media (max-width: 768px) {
         .photo-card {
           width: 95%;
           height: 85vh;
+        }
+  
+        img {
+          height: 55%;
         }
   
         h3 {
@@ -314,6 +326,7 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
       }
     `];
   }
+  
   
   
 
