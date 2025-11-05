@@ -170,21 +170,18 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        width: 100vw;
+        min-height: 100vh;
         background-color: light-dark(var(--ddd-theme-default-slateLight), var(--ddd-theme-default-charcoal));
         color: light-dark(var(--ddd-theme-default-charcoal), var(--ddd-theme-default-white));
         font-family: var(--ddd-font-navigation);
-        overflow: hidden;
+        padding: var(--ddd-spacing-4);
       }
   
       .photo-card {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
         width: min(90vw, 600px);
-        height: calc(100vh - var(--ddd-spacing-6)); /* fit everything within the screen */
         background-color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-midnight));
         border-radius: var(--ddd-radius-md);
         box-shadow: var(--ddd-boxShadow-md);
@@ -197,36 +194,26 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         box-shadow: var(--ddd-boxShadow-lg);
       }
   
-      .title {
-        width: 100%;
-        padding: var(--ddd-spacing-2);
-        text-align: center;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-  
       h3 {
-        margin: 0;
+        margin: var(--ddd-spacing-2) 0 0 0;
         font-size: var(--ddd-font-size-l);
         color: var(--ddd-theme-default-ink);
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        text-align: center;
       }
   
       p {
-        margin: 0;
+        margin: var(--ddd-spacing-1) 0;
         color: var(--ddd-theme-default-carbon);
         text-align: center;
         font-size: var(--ddd-font-size-s);
       }
   
       img {
-        flex: 1 1 auto;
         width: 100%;
-        object-fit: contain;
-        background-color: var(--ddd-theme-default-slateLight);
+        height: 400px;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-bottom: 1px solid var(--ddd-theme-default-pebble);
         transition: transform 0.3s ease, filter 0.3s ease;
       }
   
@@ -243,7 +230,6 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         width: 100%;
         border-top: 1px solid var(--ddd-theme-default-pebble);
         background-color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-graphite));
-        flex-shrink: 0;
       }
   
       .actions button {
@@ -271,8 +257,13 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         text-shadow: 0 0 6px var(--ddd-theme-default-discoveryCoral);
       }
   
+      .actions button:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+  
       .details {
-        padding: var(--ddd-spacing-2);
+        padding: var(--ddd-spacing-3);
         font-size: var(--ddd-font-size-s);
         line-height: 1.6;
         color: light-dark(var(--ddd-theme-default-carbon), var(--ddd-theme-default-white));
@@ -280,9 +271,6 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         width: 100%;
         box-sizing: border-box;
         text-align: left;
-        overflow-y: auto;
-        flex-shrink: 0;
-        max-height: 20vh; /* scrolls internally if description too long */
       }
   
       @media (max-width: 600px) {
@@ -301,7 +289,6 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
       }
     `];
   }
-  
   
   
 
