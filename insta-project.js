@@ -187,6 +187,7 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         box-shadow: var(--ddd-boxShadow-md);
         overflow: hidden;
         transition: box-shadow 0.3s ease, transform 0.3s ease;
+        width: 600px;
       }
   
       .photo-card:hover {
@@ -209,7 +210,7 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
       }
   
       img {
-        width: 100%;
+        width: 80%;
         height: 400px;
         aspect-ratio: 1 / 1;
         object-fit: cover;
@@ -262,6 +263,7 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         cursor: not-allowed;
       }
       title {
+        object-fit: contain;
 
       }
   
@@ -305,11 +307,11 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
     const reaction = this.getUserReaction(this.photo.image);
 
     return html`
-    <div class="title">
+    
+      <div class="photo-card">
+        <div class="title">
         <h3>${this.photo.title} (${this.photo.year})</h3>
         </div>
-      <div class="photo-card">
-        
         <p><strong>${this.photo.artist}</strong></p>
 
         <img src="${this.photo.image}" alt="${this.photo.title}" />
