@@ -335,11 +335,12 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
           
           <button @click=${() => this.sharePhoto(this.photo)}>🔗</button>
           <button @click=${this.nextArtwork} ?disabled=${this.currentIndex === this.totalPhotos}>➡️</button>
-        </div>
-  
-        <div class="details">
+           <div class="details">
           <p>${this.photo.description}</p>
         </div>
+        </div>
+  
+       
       </div>
     `;
   }
