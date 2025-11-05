@@ -189,55 +189,7 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         transition: box-shadow 0.3s ease, transform 0.3s ease;
         width: 600px;
       }
-      .photo-content {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: var(--ddd-spacing-3);
-        width: 100%;
-        padding: var(--ddd-spacing-2);
-        box-sizing: border-box;
-      }
-
-      /* Make sure image stays sharp and contained */
-      .photo-content img {
-        max-width: 50%;
-        height: auto;
-        object-fit: contain;
-        object-position: center;
-        border-radius: var(--ddd-radius-sm);
-        border: 1px solid var(--ddd-theme-default-pebble);
-        background-color: light-dark(var(--ddd-theme-default-slateLight), var(--ddd-theme-default-charcoal));
-      }
-
-      /* Description text on the side */
-      .details {
-        flex: 1;
-        font-size: var(--ddd-font-size-s);
-        line-height: 1.6;
-        color: light-dark(var(--ddd-theme-default-carbon), var(--ddd-theme-default-white));
-        background: transparent;
-        overflow-y: auto;
-        max-height: 400px;
-        text-align: left;
-      }
-
-      /* Mobile layout: stack vertically */
-      @media (max-width: 700px) {
-        .photo-content {
-          flex-direction: column;
-        }
-
-        .photo-content img {
-          max-width: 90%;
-        }
-
-        .details {
-          max-height: none;
-        }
-      }
-
+      
   
       .photo-card:hover {
         transform: translateY(-2px);
@@ -259,7 +211,7 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
       }
   
       img {
-      display: block;
+      
       max-width: 90%;
       max-height: 60vh;
       margin: 0 auto;
@@ -384,11 +336,11 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
           
           <button @click=${() => this.sharePhoto(this.photo)}>🔗</button>
           <button @click=${this.nextArtwork} ?disabled=${this.currentIndex === this.totalPhotos}>➡️</button>
-           <div class="details">
+           
+        </div>
+        <div class="details">
           <p>${this.photo.description}</p>
         </div>
-        </div>
-  
        
       </div>
     `;
