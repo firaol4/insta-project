@@ -210,13 +210,17 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
       }
   
       img {
-        width: 80%;
-        height: 400px;
-        aspect-ratio: 1 / 1;
-        object-fit: contain;
-        border-bottom: 1px solid var(--ddd-theme-default-pebble);
-        transition: transform 0.3s ease, filter 0.3s ease;
-      }
+      display: block;
+      max-width: 90%;
+      max-height: 60vh;
+      margin: 0 auto;
+      object-fit: contain;
+      object-position: center;
+      border-bottom: 1px solid var(--ddd-theme-default-pebble);
+      transition: transform 0.3s ease, filter 0.3s ease;
+      image-rendering: auto;
+    }
+
   
       img:hover {
         transform: scale(1.02);
