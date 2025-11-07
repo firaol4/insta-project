@@ -327,20 +327,20 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         <img src="${this.photo.image}" alt="${this.photo.title}" />
   
         <div class="actions">
-          <button @click=${this.prevArtwork} ?disabled=${this.currentIndex === 1}>⬅️</button>
+          <button @click=${this.prevArtwork} ?disabled=${this.currentIndex === 1} title="Prev Art Work">⬅️</button>
           <button 
           class=${reaction === "like" ? "liked" : ""}
-          @click=${() => this.likePhoto(this.photo)}>
+          @click=${() => this.likePhoto(this.photo)} title="Up Vote">
           👍
         </button>
         <button 
           class=${reaction === "dislike" ? "disliked" : ""}
-          @click=${() => this.dislikePhoto(this.photo)}>
+          @click=${() => this.dislikePhoto(this.photo)} title="Down Vote">
           👎
         </button>
           
-          <button @click=${() => this.sharePhoto(this.photo)}>🔗</button>
-          <button @click=${this.nextArtwork} ?disabled=${this.currentIndex === this.totalPhotos}>➡️</button>
+          <button @click=${() => this.sharePhoto(this.photo)} title="Copy Link">🔗</button>
+          <button @click=${this.nextArtwork} ?disabled=${this.currentIndex === this.totalPhotos} title="Next Art Work">➡️</button>
            
         </div>
         <div class="details">
