@@ -182,6 +182,7 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         flex-direction: column;
         align-items: center;
         width: min(90vw, 600px);
+        height: 90vh;
         background-color: light-dark(var(--ddd-theme-default-white), var(--ddd-theme-default-midnight));
         border-radius: var(--ddd-radius-md);
         box-shadow: var(--ddd-boxShadow-md);
@@ -215,6 +216,8 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
       max-width: 90%;
       max-height: 60vh;
       margin: 0 auto;
+      height: 60vh;
+  
       object-fit: contain;
       object-position: center;
       border-bottom: 1px solid var(--ddd-theme-default-pebble);
@@ -283,6 +286,7 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
         text-align: left;
         height: 300px;
         overflow: scroll;
+        flex: 1;
       }
   
       @media (max-width: 600px) {
