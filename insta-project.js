@@ -199,9 +199,10 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
   
       h3 {
         margin: var(--ddd-spacing-2) 0 0 0;
-        font-size: var(--ddd-font-size-l);
+        font-size: var(--ddd-font-size-s);
         color: var(--ddd-theme-default-ink);
         text-align: center;
+       
       }
   
       p {
