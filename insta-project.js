@@ -259,12 +259,24 @@ export class InstaProject extends DDDSuper(I18NMixin(LitElement)) {
   
       .actions button.liked {
         color: var(--ddd-theme-default-forestGreen);
-        text-shadow: 0 0 20px var(--ddd-theme-default-creekTeal);
+        text-shadow:
+          0 0 5px var(--ddd-theme-default-forestGreen),
+          0 0 15px var(--ddd-theme-default-creekTeal),
+          0 0 30px var(--ddd-theme-default-creekTeal),
+          0 0 45px var(--ddd-theme-default-creekTeal);
+        filter: brightness(1.4);
+        transition: all 0.3s ease-in-out;
       }
-  
+
       .actions button.disliked {
         color: var(--ddd-theme-default-original87Pink);
-        text-shadow: 0 0 20px var(--ddd-theme-default-discoveryCoral);
+        text-shadow:
+          0 0 5px var(--ddd-theme-default-original87Pink),
+          0 0 15px var(--ddd-theme-default-discoveryCoral),
+          0 0 30px var(--ddd-theme-default-discoveryCoral),
+          0 0 45px var(--ddd-theme-default-discoveryCoral);
+        filter: brightness(1.4);
+        transition: all 0.3s ease-in-out;
       }
   
       .actions button:disabled {
